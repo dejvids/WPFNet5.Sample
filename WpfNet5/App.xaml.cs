@@ -9,7 +9,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using WpfNet5.Core.Extensions;
-using WpfNet5.Extensions;
 using WpfNet5.ViewModels;
 using WpfNet5.Views;
 
@@ -30,7 +29,7 @@ namespace WpfNet5
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange:true)
                 .Build();
 
-            _serviceProvider = new ServiceCollection()
+             _serviceProvider = new ServiceCollection()
                 .AddNavigation<HomeViewModel>()
                 .AddTransient(typeof(MainWindow))
                 .AddModule<Admin.AdminModule>()

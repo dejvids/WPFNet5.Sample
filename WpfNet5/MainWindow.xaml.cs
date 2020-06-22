@@ -32,7 +32,9 @@ namespace WpfNet5
             var contentPage = _navigationService.CurrentPage;
             //navMenu.Init(serviceProvider.GetRequiredService<MenuViewModel>());
             // MainFrame.Navigate(menuPage);
-            menuFrame.Navigate(new Menu(serviceProvider.GetRequiredService<MenuViewModel>()));
+            var menuViewModel = serviceProvider.GetRequiredService<MenuViewModel>();
+            menuViewModel.Init(_navigationService, null);
+            menuFrame.Navigate(new Menu(menuViewModel));
             contentFrame.Navigate(contentPage);
         }
     }

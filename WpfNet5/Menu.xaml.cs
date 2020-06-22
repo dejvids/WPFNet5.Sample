@@ -24,11 +24,11 @@ namespace WpfNet5
         {
             InitializeComponent();
         }
-
         public Menu(MenuViewModel viewModel)
+
         {
-            DataContext = viewModel;
             InitializeComponent();
+            DataContext = viewModel;
         }
         
     }

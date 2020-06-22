@@ -16,7 +16,7 @@ namespace WpfNet5.Core.Extensions
 
             foreach(var viewModel in viewModels)
             {
-                services.AddTransient(viewModel);
+                 services.AddTransient(viewModel);
             }
 
             services.AddTransient<TModule>();

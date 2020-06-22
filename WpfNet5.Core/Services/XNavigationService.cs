@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
 
 namespace WpfNet5.Core.Services
@@ -10,10 +11,13 @@ namespace WpfNet5.Core.Services
         public XPage CurrentPage { get; private set; }
         private readonly IServiceProvider m_serviceProvider;
 
+
         public XNavigationService(IServiceProvider serviceProvider, XPage rootPage)
         {
             m_serviceProvider = serviceProvider;
             CurrentPage = rootPage;
+            
+        
         }
 
         public void Navigate<TViewModel>() where TViewModel : XViewModel
@@ -29,6 +33,9 @@ namespace WpfNet5.Core.Services
             CurrentPage = destinationPage;
             var viewModel = m_serviceProvider.GetRequiredService<TViewModel>();
             CurrentPage.DataContext = viewModel;
+
+            //var httpClient = m_serviceProvider.GetService<HttpClient>();
+            viewModel.Init(this, null);
 
         }
     }
