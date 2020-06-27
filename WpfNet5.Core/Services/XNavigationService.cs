@@ -9,6 +9,8 @@ namespace WpfNet5.Core.Services
     public class XNavigationService : IXNavigationService
     {
         public XPage CurrentPage { get; private set; }
+        public XViewModel CurrentViewModel { get; protected set; }
+
         private readonly IServiceProvider m_serviceProvider;
 
 
@@ -16,8 +18,6 @@ namespace WpfNet5.Core.Services
         {
             m_serviceProvider = serviceProvider;
             CurrentPage = rootPage;
-            
-        
         }
 
         public void Navigate<TViewModel>() where TViewModel : XViewModel
@@ -36,7 +36,14 @@ namespace WpfNet5.Core.Services
 
             //var httpClient = m_serviceProvider.GetService<HttpClient>();
             viewModel.Init(this, null);
+            CurrentViewModel = viewModel;
 
+        }
+
+        public void GoBack()
+        {
+            if(this.CurrentPage.NavigationService.CanGoBack)
+                this.CurrentPage.NavigationService.GoBack();
         }
     }
 }

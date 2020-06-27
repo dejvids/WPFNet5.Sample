@@ -11,6 +11,8 @@ namespace WpfNet5.Core
     {
         public event PropertyChangedEventHandler PropertyChanged;
         //public event EventHandler Initialized;
+
+        
         public IXNavigationService NavigationService { get; private set; }
         //public HttpClient Http { get; private set; }
 

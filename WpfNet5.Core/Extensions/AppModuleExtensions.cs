@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using WpfNet5.Core.Services;
 
 namespace WpfNet5.Core.Extensions
 {

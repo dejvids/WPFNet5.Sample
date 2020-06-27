@@ -9,7 +9,10 @@ namespace WpfNet5.Core.Services
     public interface IXNavigationService
     {
         XPage CurrentPage { get; }
+        XViewModel CurrentViewModel { get; }
         void Navigate<TViewModel>()
             where TViewModel : XViewModel;
+
+        void GoBack();
     }
 }

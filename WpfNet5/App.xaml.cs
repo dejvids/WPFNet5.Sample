@@ -34,7 +34,6 @@ namespace WpfNet5
                 .AddTransient(typeof(MainWindow))
                 .AddModule<Admin.AdminModule>()
                 .AddModule<MainModule>()
-                //.AddTransient(typeof(FirstViewModel))
                 .BuildServiceProvider();
 
             var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();

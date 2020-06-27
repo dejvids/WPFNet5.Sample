@@ -19,7 +19,7 @@ namespace WpfNet5
         {
             ShowFirstView = ReactiveCommand.Create(() => NavigationService.Navigate<FirstViewModel>());
             ShowSecond = ReactiveCommand.Create(() => NavigationService.Navigate<SecondViewModel>());
-            ShowAdmin = ReactiveCommand.Create(() => NavigationService.Navigate<AdminViewModel>());
+            ShowAdmin = ReactiveCommand.Create(() => NavigationService.GoBack());
         }
     }
 }

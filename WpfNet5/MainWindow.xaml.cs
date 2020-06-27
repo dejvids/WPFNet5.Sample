@@ -24,6 +24,13 @@ namespace WpfNet5
     public partial class MainWindow : Window
     {
         private readonly IXNavigationService _navigationService;
+        public MainWindow()
+        {
+            InitializeComponent();
+
+           
+        }
+
         public MainWindow(IServiceProvider serviceProvider)
         {
             _navigationService = serviceProvider.GetRequiredService<IXNavigationService>();
