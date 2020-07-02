@@ -7,7 +7,7 @@ namespace WpfNet5.ViewModels
 {
     public class HomeViewModel : XViewModel
     {
-        string _title = "Home View model";
+        string _title = "Home ViewModel";
         public string Title 
         {
             get => _title;

@@ -1,9 +1,6 @@
 ﻿using ReactiveUI;
 using System.Reactive;
-using System.Windows.Input;
-using WpfNet5.Admin.ViewModels;
 using WpfNet5.Core;
-using WpfNet5.Core.Services;
 using WpfNet5.ViewModels;
 
 namespace WpfNet5

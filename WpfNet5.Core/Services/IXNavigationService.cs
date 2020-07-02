@@ -10,6 +10,7 @@ namespace WpfNet5.Core.Services
     {
         XPage CurrentPage { get; }
         XViewModel CurrentViewModel { get; }
+        Router RouterContainer { get; set; }
         void Navigate<TViewModel>()
             where TViewModel : XViewModel;
 

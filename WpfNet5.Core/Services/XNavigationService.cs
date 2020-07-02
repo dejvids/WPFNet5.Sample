@@ -3,6 +3,8 @@ using System;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace WpfNet5.Core.Services
 {
@@ -12,6 +14,7 @@ namespace WpfNet5.Core.Services
         public XViewModel CurrentViewModel { get; protected set; }
 
         private readonly IServiceProvider m_serviceProvider;
+        public Router RouterContainer { get; set; }
 
 
         public XNavigationService(IServiceProvider serviceProvider, XPage rootPage)
@@ -22,21 +25,21 @@ namespace WpfNet5.Core.Services
 
         public void Navigate<TViewModel>() where TViewModel : XViewModel
         {
-            var navigationService = CurrentPage.NavigationService;
-            var basePageType = typeof(XPage<TViewModel>);
+            //var navigationService = CurrentPage.NavigationService;
+            var basePageType = typeof(ContentPage<TViewModel>);
             var assembly = Assembly.GetAssembly(typeof(TViewModel));
 
             var destinationPageType = assembly.GetTypes().FirstOrDefault(t => t.IsSubclassOf(basePageType));
 
-            var destinationPage = Activator.CreateInstance(destinationPageType) as XPage<TViewModel>;
-            navigationService.Navigate(destinationPage);
-            CurrentPage = destinationPage;
-            var viewModel = m_serviceProvider.GetRequiredService<TViewModel>();
-            CurrentPage.DataContext = viewModel;
+            var destinationPage = Activator.CreateInstance(destinationPageType) as ContentPage<TViewModel>;
+            RouterContainer.Content = destinationPage;
+            //navigationService.Navigate(destinationPage);
+            //CrrentPage = destinationPage;
+            //var viewModel = m_serviceProvider.GetRequiredService<TViewModel>();
+            //CurrentPage.DataContext = viewModel;
 
-            //var httpClient = m_serviceProvider.GetService<HttpClient>();
-            viewModel.Init(this, null);
-            CurrentViewModel = viewModel;
+            ////var httpClient = m_serviceProvider.GetService<HttpClient>();
+            //CurrentViewModel = viewModel;
 
         }
 

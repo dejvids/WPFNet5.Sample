@@ -18,13 +18,13 @@ namespace WpfNet5.Core.Extensions
             services.AddSingleton<IXNavigationService, XNavigationService>(s =>
             {
                 var rootViewmodel = s.GetRequiredService<TRootViewModel>();
-                var assembly = Assembly.GetAssembly(typeof(TRootViewModel));
-                var rootViewType = assembly.GetTypes().FirstOrDefault(t => t.IsSubclassOf(typeof(XPage<TRootViewModel>)));
-                var rootPage = Activator.CreateInstance(rootViewType) as XPage<TRootViewModel>;
+                //var assembly = Assembly.GetAssembly(typeof(TRootViewModel));
+                //var rootViewType = assembly.GetTypes().FirstOrDefault(t => t.IsSubclassOf(typeof(XPage<TRootViewModel>)));
+                //var rootPage = Activator.CreateInstance(rootViewType) as XPage<TRootViewModel>;
 
-                var navService = new XNavigationService(s, rootPage);
-                rootViewmodel.Init(navService, null);
-                rootPage.DataContext = rootViewmodel;
+                var navService = new XNavigationService(s, null);
+                //rootViewmodel.Init(navService, null);
+                //rootPage.DataContext = rootViewmodel;
                 return navService;
             });
 

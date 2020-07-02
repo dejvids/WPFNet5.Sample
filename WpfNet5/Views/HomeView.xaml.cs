@@ -18,7 +18,7 @@ namespace WpfNet5.Views
     /// <summary>
     /// Interaction logic for HomeView.xaml
     /// </summary>
-    public partial class HomeView : XPage<HomeViewModel>
+    public partial class HomeView : ContentPage<HomeViewModel>
     {
         public HomeView()
         {

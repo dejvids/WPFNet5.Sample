@@ -18,17 +18,12 @@ namespace WpfNet5
     /// <summary>
     /// Interaction logic for Menu.xaml
     /// </summary>
-    public partial class Menu : XPage<MenuViewModel>
+    public partial class Menu : ContentPage<MenuViewModel>
     {
         public Menu()
         {
             InitializeComponent();
-        }
-        public Menu(MenuViewModel viewModel)
-
-        {
-            InitializeComponent();
-            DataContext = viewModel;
+            this.DataContext = this.ViewModel;
         }
         
     }

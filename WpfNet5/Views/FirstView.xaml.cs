@@ -18,12 +18,13 @@ namespace WpfNet5.Views
     /// <summary>
     /// Interaction logic for FirstView.xaml
     /// </summary>
-    public partial class FirstView : XPage<FirstViewModel>
+    public partial class FirstView : ContentPage<FirstViewModel>
     {
         [XView(typeof(FirstViewModel))]
         public FirstView()
         {
             InitializeComponent();
+            this.DataContext = ViewModel;
         }
     }
 }

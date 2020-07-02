@@ -35,14 +35,15 @@ namespace WpfNet5
         {
             _navigationService = serviceProvider.GetRequiredService<IXNavigationService>();
             InitializeComponent();
+            
 
-            var contentPage = _navigationService.CurrentPage;
+            //var contentPage = _navigationService.CurrentPage;
             //navMenu.Init(serviceProvider.GetRequiredService<MenuViewModel>());
             // MainFrame.Navigate(menuPage);
-            var menuViewModel = serviceProvider.GetRequiredService<MenuViewModel>();
-            menuViewModel.Init(_navigationService, null);
-            menuFrame.Navigate(new Menu(menuViewModel));
-            contentFrame.Navigate(contentPage);
+            //var menuViewModel = serviceProvider.GetRequiredService<MenuViewModel>();
+            //menuViewModel.Init(_navigationService, null);
+            //menuFrame.Navigate(new Menu(menuViewModel));
+            //ontentFrame.Navigate(contentPage);
         }
     }
 }
