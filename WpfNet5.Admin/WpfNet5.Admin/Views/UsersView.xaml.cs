@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -10,29 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfNet5.Admin.ViewModels;
 using WpfNet5.Core;
 
-namespace WpfNet5
+namespace WpfNet5.Admin.Views
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    /// Interaction logic for UsersView.xaml
     /// </summary>
-    public partial class NavMenu : UserControl
+    public partial class UsersView : ContentPage<UsersViewModel>
     {
-        public NavMenu()
+        public UsersView()
         {
             InitializeComponent();
-        }
-        public void Init(MenuViewModel menuViewModel)
-        {
-            var menuPage = new Menu();
-            menuPage.DataContext = menuViewModel;
-            menuFrame.Navigate(menuPage);
-        }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

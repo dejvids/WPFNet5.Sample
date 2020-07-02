@@ -23,26 +23,9 @@ namespace WpfNet5
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly IXNavigationService _navigationService;
         public MainWindow()
         {
             InitializeComponent();
-
-           
-        }
-
-        public MainWindow(IServiceProvider serviceProvider)
-        {
-            _navigationService = serviceProvider.GetRequiredService<IXNavigationService>();
-            InitializeComponent();
-
-            var contentPage = _navigationService.CurrentPage;
-            //navMenu.Init(serviceProvider.GetRequiredService<MenuViewModel>());
-            // MainFrame.Navigate(menuPage);
-            var menuViewModel = serviceProvider.GetRequiredService<MenuViewModel>();
-            menuViewModel.Init(_navigationService, null);
-            menuFrame.Navigate(new Menu(menuViewModel));
-            contentFrame.Navigate(contentPage);
         }
     }
 }

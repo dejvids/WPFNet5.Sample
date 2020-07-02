@@ -8,5 +8,10 @@ namespace WpfNet5.ViewModels
     [ViewModel]
     public class SecondViewModel: XViewModel
     {
+
+        public SecondViewModel()
+        {
+
+        }
     }
 }

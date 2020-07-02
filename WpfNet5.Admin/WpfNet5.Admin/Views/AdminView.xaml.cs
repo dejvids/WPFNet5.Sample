@@ -18,10 +18,9 @@ namespace WpfNet5.Admin.Views
     /// <summary>
     /// Interaction logic for AdminView.xaml
     /// </summary>
-    public partial class AdminView : XPage<AdminViewModel>
-    {
+    public partial class AdminView : ContentPage<AdminViewModel>
+    { 
         public AdminView()
-            :base()
         {
             InitializeComponent();
         }

@@ -14,5 +14,10 @@ namespace WpfNet5.ViewModels
             get => _title;
             set { _title = value; RaisePropertyChanged(nameof(Title)); }
         }
+
+        public override void OnClose()
+        {
+            base.OnClose();
+        }
     }
 }

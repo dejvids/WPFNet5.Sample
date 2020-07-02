@@ -16,10 +16,10 @@ namespace WpfNet5.Core
         {
         }
 
-        //public XPage(IServiceProvider serviceProvider)
-        //{
-        //    ViewModel = serviceProvider.GetRequiredService<TViewModel>();
-        //    DataContext = ViewModel;
-        //}
+        public XPage(IServiceProvider serviceProvider)
+        {
+            ViewModel = serviceProvider.GetRequiredService<TViewModel>();
+            DataContext = ViewModel;
+        }
     }
 }

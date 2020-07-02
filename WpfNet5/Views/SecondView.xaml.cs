@@ -18,7 +18,7 @@ namespace WpfNet5.Views
     /// <summary>
     /// Interaction logic for SecondPage.xaml
     /// </summary>
-    public partial class SecondView : XPage<SecondViewModel>
+    public partial class SecondView : ContentPage<SecondViewModel>
     {
         public SecondView()
         {

@@ -12,24 +12,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfNet5.Core;
+using WpfNet5.ViewModels;
 
-namespace WpfNet5
+namespace WpfNet5.Views
 {
     /// <summary>
     /// Interaction logic for Menu.xaml
     /// </summary>
-    public partial class Menu : XPage<MenuViewModel>
+    public partial class Menu : ContentPage<MenuViewModel>
     {
         public Menu()
         {
             InitializeComponent();
         }
-        public Menu(MenuViewModel viewModel)
-
-        {
-            InitializeComponent();
-            DataContext = viewModel;
-        }
-        
     }
 }
