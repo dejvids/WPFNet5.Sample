@@ -23,6 +23,7 @@ namespace WpfNet5.Views
         public FirstView()
         {
             InitializeComponent();
+            this.DataContext = ViewModel;
         }
     }
 }

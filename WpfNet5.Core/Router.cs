@@ -52,7 +52,7 @@ namespace WpfNet5.Core
         }
 
         internal void Show<TViewModel>(ContentPage<TViewModel> destinationPage) where TViewModel : XViewModel
-        {
+        { 
             Content = destinationPage;
         }
 

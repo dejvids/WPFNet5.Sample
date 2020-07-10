@@ -13,7 +13,7 @@ namespace WpfNet5.Core
         protected void OnLaunched(object sender, EventArgs e)
         {
             Launched?.Invoke(sender, e);
-        }
+    }
     }
 
     public class ContentPage<TViewModel> : ContentPage where TViewModel : XViewModel

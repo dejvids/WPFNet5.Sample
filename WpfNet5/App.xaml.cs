@@ -38,6 +38,8 @@ namespace WpfNet5
 
             ApplicationBase.ServiceProvider = _serviceProvider;
 
+            ApplicationBase.ServiceProvider = _serviceProvider;
+
             var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
             mainWindow.Show();
         }
