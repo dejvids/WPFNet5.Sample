@@ -40,9 +40,8 @@ namespace WpfNet5.Core.Extensions
         public static IServiceCollection RegisterMainWindow<TWindow>(this IServiceCollection services) where TWindow : Window
         {
             services.AddTransient<TWindow>();
-            services.AddSingleton<IXNavigationService, XNavigationService>();
             using var sp = services.BuildServiceProvider();
-            var navService = sp.GetRequiredService<IXNavigationService>();
+            services.AddSingleton<IXNavigationService, XNavigationService>();
 
             return services;
         }
