@@ -1,47 +1,39 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
 using WpfNet5.Core;
 using WpfNet5.Core.Extensions;
-using WpfNet5.ViewModels;
-using WpfNet5.Views;
 
 namespace WpfNet5
 {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : ApplicationBase
+    public partial class App
     {
-        private readonly IConfiguration _configuration;
-        private readonly IServiceProvider _serviceProvider;
-
         public App()
         {
-            _configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange:true)
-                .Build();
-
-            _serviceProvider = new ServiceCollection()
-               .AddModule<Admin.AdminModule>()
+            ConfigureConfiguration(configurationBuilder =>
+                configurationBuilder.SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true));
+            
+            ConfigureServices(services =>
+               services.AddModule<Admin.AdminModule>()
                .AddModule<MainModule>()
-               .RegisterMainWindow<MainWindow>()
-               .BuildServiceProvider();
+               .RegisterMainWindow<MainWindow>());
 
-            ApplicationBase.ServiceProvider = _serviceProvider;
-
-            ApplicationBase.ServiceProvider = _serviceProvider;
-
-            var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
-            mainWindow.Show();
+            Start();
         }
+        //protected override void Startup()
+        //{
+        //    ConfigureConfiguration(configurationBuilder =>
+        //        configurationBuilder.SetBasePath(Directory.GetCurrentDirectory())
+        //        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+        //    );
+
+        //    ConfigureServices(services =>
+        //       services.AddModule<Admin.AdminModule>()
+        //       .AddModule<MainModule>()
+        //       .RegisterMainWindow<MainWindow>());
+        //}
     }
 }

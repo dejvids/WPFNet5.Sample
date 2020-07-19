@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -37,10 +38,9 @@ namespace WpfNet5.Core.Extensions
         //    return services;
         //}
 
-        public static IServiceCollection RegisterMainWindow<TWindow>(this IServiceCollection services) where TWindow : Window
+        public static IServiceCollection RegisterMainWindow<TWindow>(this IServiceCollection services) where TWindow : WindowBase
         {
-            services.AddTransient<TWindow>();
-            using var sp = services.BuildServiceProvider();
+            services.AddSingleton<WindowBase, TWindow>();
             services.AddSingleton<IXNavigationService, XNavigationService>();
 
             return services;

@@ -38,7 +38,7 @@ namespace WpfNet5.Core
         //public event EventHandler Initialized;
 
 
-        public IXNavigationService NavigationService => ApplicationBase.ServiceProvider.GetService<IXNavigationService>();
+       // public IXNavigationService NavigationService => ApplicationBase.ServiceProvider.GetService<IXNavigationService>();
         //public HttpClient Http { get; private set; }
 
         public void RaisePropertyChanged(string propertyName)

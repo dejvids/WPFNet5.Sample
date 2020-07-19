@@ -13,7 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfNet5.Core;
 using WpfNet5.Core.Services;
+using WpfNet5.ViewModels;
 using WpfNet5.Views;
 
 namespace WpfNet5
@@ -21,11 +23,19 @@ namespace WpfNet5
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : WindowBase
     {
-        public MainWindow()
+        public MainWindow(MenuViewModel menuViewModel, IXNavigationService navigationService)
         {
             InitializeComponent();
+            navigationService.AddRouter(mainRouter);
+            Router = mainRouter;
+            menu.SetViewModel(menuViewModel);
+        }
+
+        private void Router_ContentChanged(object sender, EventArgs e)
+        {
+            mainRouter.Content = sender;
         }
     }
 }

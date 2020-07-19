@@ -20,10 +20,10 @@ namespace WpfNet5.Views
     /// </summary>
     public partial class FirstView : ContentPage<FirstViewModel>
     {
-        public FirstView()
+        public FirstView(FirstViewModel viewModel)
         {
             InitializeComponent();
-            this.DataContext = ViewModel;
+            this.DataContext = viewModel;
         }
     }
 }

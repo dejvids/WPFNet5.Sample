@@ -25,20 +25,31 @@ namespace WpfNet5.Core
             this.Loaded += ContentPage_Loaded;
         }
 
+        public ContentPage(TViewModel viewModel)
+        {
+            ViewModel = viewModel;
+        }
+
+        public void SetViewModel(TViewModel viewModel)
+        {
+            ViewModel = viewModel;
+            DataContext = ViewModel;
+        }
+
         private void ContentPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (ViewModel == null && ApplicationBase.ServiceProvider != null)
-            {
-                ViewModel = ApplicationBase.ServiceProvider.GetService<TViewModel>();
-            }
+            //if (ViewModel == null && ApplicationBase.ServiceProvider != null)
+            //{
+            //    ViewModel = ApplicationBase.ServiceProvider.GetService<TViewModel>();
+            //}
 
-            this.DataContext = ViewModel;
+           // this.DataContext = ViewModel;
             OnLaunched(this, new EventArgs());
         }
 
         public void Initialize(TViewModel viewModel)
         {
-            ViewModel = viewModel;
+           // ViewModel = viewModel;
         }
     }
 }

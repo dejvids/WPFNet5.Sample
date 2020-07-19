@@ -25,5 +25,7 @@ namespace WpfNet5.Views
         {
             InitializeComponent();
         }
+
+
     }
 }

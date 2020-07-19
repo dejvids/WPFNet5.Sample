@@ -7,57 +7,37 @@ namespace WpfNet5.Core
 {
     public class Router : UserControl
     {
-        private ContentPage _currentPage;
-
-        public ContentPage CurrentPage 
-        { 
-            get { return _currentPage; }
-            set { _currentPage = value; } 
-        }
+        public ContentPage CurrentPage { get; set; }
 
         public XViewModel CurrentViewModel { get; set; }
-
-        public static event EventHandler Created;
+        public XViewModel HomeViewModel { get; set; }
 
         public Router()
         {
-            Loaded += Router_Loaded;
         }
 
 
-        private void Router_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            if (ApplicationBase.ServiceProvider != null)
-            {
-                if(this.Content is ContentPage page)
-                {
-                    CurrentPage = page;
-                    CurrentPage.Launched += RootPageInitialized;
-                }
 
-                Created?.Invoke(this, new EventArgs());
-            }
-        }
-
-        private void RootPageInitialized(object sender, EventArgs e)
-        {
-            var type = sender.GetType();
-            var property = type.GetProperty(nameof(ContentPage<XViewModel>.ViewModel));
-            if(property != null)
-            {
-                CurrentViewModel = property.GetValue(sender) as XViewModel;
-            }
-
-            CurrentPage.Launched -= RootPageInitialized;
-        }
-
-        internal void Show<TViewModel>(ContentPage<TViewModel> destinationPage) where TViewModel : XViewModel
+        internal void Show<TViewModel>(ContentPage<TViewModel> destinationPage, TViewModel viewmodel) where TViewModel : XViewModel
         { 
             Content = destinationPage;
+            OnNavigated(viewmodel);
+        }
+
+        internal void Show(ContentPage content, XViewModel viewModel)
+        {
+            Content = content;
+            OnNavigated(viewModel);
+           
         }
 
         public void OnNavigated<TViewModel>(TViewModel viewModel)
         {
+            if (CurrentViewModel == null)
+            {
+                HomeViewModel = viewModel as XViewModel;
+            }
+
             CurrentViewModel = viewModel as XViewModel;
         }
 
