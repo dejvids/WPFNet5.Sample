@@ -8,18 +8,17 @@ namespace WpfNet5.Core.Services
 {
     public interface IXNavigationService
     {
-        List<Router> RouterContainer { get;}
+        Router Router  {get;}
         void Navigate<TViewModel>()
-            where TViewModel : XViewModel;
+            where TViewModel : ViewModelBase;
 
         void Navigate(object content);
 
-        void Navigate<TViewModel>(object parameter) where TViewModel : XViewModel;
-        void Navigate<TViewModel, TParam>(TParam parameter) where TViewModel : XViewModel<TParam>;
+        void Navigate<TViewModel>(object parameter) where TViewModel : ViewModelBase;
+        void Navigate<TViewModel, TParam>(TParam parameter) where TViewModel : ViewModelBase<TParam>;
 
         void GoBack();
-        void AddRouter(Router mainRouter);
+        internal void StartWithRouter(Router mainRouter);
 
-        void Start();
     }
 }

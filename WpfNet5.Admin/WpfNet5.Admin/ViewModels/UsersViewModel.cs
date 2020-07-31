@@ -8,7 +8,7 @@ using WpfNet5.Core;
 namespace WpfNet5.Admin.ViewModels
 {
     [ViewModel]
-    public class UsersViewModel: XViewModel<int>
+    public class UsersViewModel: ViewModelBase<int>
     {
         int m_parameter;
 

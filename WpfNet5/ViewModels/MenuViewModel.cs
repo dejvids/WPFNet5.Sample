@@ -7,7 +7,7 @@ using WpfNet5.Core.Services;
 namespace WpfNet5.ViewModels
 {
     [ViewModel]
-    public class MenuViewModel : XViewModel
+    public class MenuViewModel : ViewModelBase
     {
         private readonly IXNavigationService m_navigationService;
 

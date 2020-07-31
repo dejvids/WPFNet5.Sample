@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.IO;
+using System.Reflection;
 using WpfNet5.Core;
 using WpfNet5.Core.Extensions;
 
@@ -8,32 +10,18 @@ namespace WpfNet5
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App
+    public partial class App : ApplicationBase
     {
         public App()
         {
-            ConfigureConfiguration(configurationBuilder =>
-                configurationBuilder.SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true));
-            
+            SetDefaultConfiguration();
+                
             ConfigureServices(services =>
-               services.AddModule<Admin.AdminModule>()
-               .AddModule<MainModule>()
+               services.AddModule<MainModule>()
+               .AddModule<Admin.AdminModule>()
                .RegisterMainWindow<MainWindow>());
 
             Start();
         }
-        //protected override void Startup()
-        //{
-        //    ConfigureConfiguration(configurationBuilder =>
-        //        configurationBuilder.SetBasePath(Directory.GetCurrentDirectory())
-        //        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-        //    );
-
-        //    ConfigureServices(services =>
-        //       services.AddModule<Admin.AdminModule>()
-        //       .AddModule<MainModule>()
-        //       .RegisterMainWindow<MainWindow>());
-        //}
     }
 }

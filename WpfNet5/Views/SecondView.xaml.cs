@@ -20,9 +20,10 @@ namespace WpfNet5.Views
     /// </summary>
     public partial class SecondView : ContentPage<SecondViewModel>
     {
-        public SecondView()
+        public SecondView(SecondViewModel viewModel)
         {
             InitializeComponent();
+            ViewModel = viewModel;
         }
     }
 }

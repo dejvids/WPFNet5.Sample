@@ -6,7 +6,7 @@ using WpfNet5.Core;
 namespace WpfNet5.Admin.ViewModels
 {
     [ViewModel]
-    public class AdminViewModel : XViewModel
+    public class AdminViewModel : ViewModelBase
     {
         public object Param { get; private set; }
 

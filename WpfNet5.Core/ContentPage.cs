@@ -1,55 +1,35 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using System.Windows.Controls;
 
 namespace WpfNet5.Core
 {
     public class ContentPage : UserControl
     {
-        public event EventHandler Launched;
-
-        protected void OnLaunched(object sender, EventArgs e)
+        public ContentPage()
         {
-            Launched?.Invoke(sender, e);
-    }
+            
+        }
+
+        public virtual void OnStart(object obj = null)
+        { }
     }
 
-    public class ContentPage<TViewModel> : ContentPage where TViewModel : XViewModel
+    public class ContentPage<TViewModel> : ContentPage where TViewModel : ViewModelBase
     {
-        public TViewModel ViewModel { get; protected set; }
+        private TViewModel m_viewModel;
+        public TViewModel ViewModel 
+        {
+            get { return m_viewModel; }
+            set { m_viewModel = value; DataContext = m_viewModel; } 
+        }
 
         public ContentPage()
         {
-            this.Loaded += ContentPage_Loaded;
         }
 
         public ContentPage(TViewModel viewModel)
         {
             ViewModel = viewModel;
-        }
-
-        public void SetViewModel(TViewModel viewModel)
-        {
-            ViewModel = viewModel;
-            DataContext = ViewModel;
-        }
-
-        private void ContentPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            //if (ViewModel == null && ApplicationBase.ServiceProvider != null)
-            //{
-            //    ViewModel = ApplicationBase.ServiceProvider.GetService<TViewModel>();
-            //}
-
-           // this.DataContext = ViewModel;
-            OnLaunched(this, new EventArgs());
-        }
-
-        public void Initialize(TViewModel viewModel)
-        {
-           // ViewModel = viewModel;
         }
     }
 }

@@ -12,5 +12,10 @@ namespace WpfNet5.Views
         {
             InitializeComponent();
         }
+
+        public HomeView(HomeViewModel viewModel)
+        {
+            ViewModel = viewModel;
+        }
     }
 }

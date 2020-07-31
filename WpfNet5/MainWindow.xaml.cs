@@ -1,22 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using WpfNet5.Core;
-using WpfNet5.Core.Services;
+﻿using WpfNet5.Core;
 using WpfNet5.ViewModels;
-using WpfNet5.Views;
 
 namespace WpfNet5
 {
@@ -25,17 +8,12 @@ namespace WpfNet5
     /// </summary>
     public partial class MainWindow : WindowBase
     {
-        public MainWindow(MenuViewModel menuViewModel, IXNavigationService navigationService)
+        public MainWindow(MenuViewModel menuViewModel)
         {
             InitializeComponent();
-            navigationService.AddRouter(mainRouter);
             Router = mainRouter;
-            menu.SetViewModel(menuViewModel);
-        }
 
-        private void Router_ContentChanged(object sender, EventArgs e)
-        {
-            mainRouter.Content = sender;
+            menu.ViewModel = menuViewModel;
         }
     }
 }

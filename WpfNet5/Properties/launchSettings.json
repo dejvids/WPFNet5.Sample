@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "WpfNet5": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNET_CORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

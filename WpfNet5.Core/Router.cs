@@ -8,40 +8,36 @@ namespace WpfNet5.Core
     public class Router : UserControl
     {
         public ContentPage CurrentPage { get; set; }
-
-        public XViewModel CurrentViewModel { get; set; }
-        public XViewModel HomeViewModel { get; set; }
+        public ViewModelBase CurrentViewModel { get; set; }
+        public ViewModelBase HomeViewModel { get; set; }
 
         public Router()
         {
         }
 
-
-
-        internal void Show<TViewModel>(ContentPage<TViewModel> destinationPage, TViewModel viewmodel) where TViewModel : XViewModel
+        internal void Show<TViewModel>(ContentPage destinationPage, TViewModel viewmodel) where TViewModel : ViewModelBase
         { 
             Content = destinationPage;
             OnNavigated(viewmodel);
         }
 
-        internal void Show(ContentPage content, XViewModel viewModel)
+        internal void Show(ContentPage content, ViewModelBase viewModel)
         {
             Content = content;
             OnNavigated(viewModel);
-           
         }
 
-        public void OnNavigated<TViewModel>(TViewModel viewModel)
+        private void OnNavigated(ViewModelBase viewModel)
         {
             if (CurrentViewModel == null)
             {
-                HomeViewModel = viewModel as XViewModel;
+                HomeViewModel = viewModel;
             }
 
-            CurrentViewModel = viewModel as XViewModel;
+            CurrentViewModel = viewModel;
         }
 
-        public void OnCLose()
+        internal void OnCLose()
         {
             CurrentViewModel?.OnClose();
         }

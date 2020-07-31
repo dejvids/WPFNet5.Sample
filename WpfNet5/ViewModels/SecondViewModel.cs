@@ -6,7 +6,7 @@ using WpfNet5.Core;
 namespace WpfNet5.ViewModels
 {
     [ViewModel]
-    public class SecondViewModel: XViewModel
+    public class SecondViewModel: ViewModelBase
     {
 
         public SecondViewModel()

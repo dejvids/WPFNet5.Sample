@@ -6,7 +6,7 @@ using WpfNet5.Core;
 namespace WpfNet5.ViewModels
 {
     [ViewModel]
-    public class FirstViewModel : XViewModel
+    public class FirstViewModel : ViewModelBase
     {
         string _title = "First View model";
         public string Title
