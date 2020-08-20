@@ -16,8 +16,12 @@ namespace WpfNet5.Core
         }
 
         internal void Show<TViewModel>(ContentPage destinationPage, TViewModel viewmodel) where TViewModel : ViewModelBase
-        { 
-            Content = destinationPage;
+        {
+            this.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                Content = destinationPage;
+
+            }));
             OnNavigated(viewmodel);
         }
 

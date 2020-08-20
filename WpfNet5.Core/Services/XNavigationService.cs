@@ -23,7 +23,7 @@ namespace WpfNet5.Core.Services
         private void StartWithRouter(Router mainRouter)
         {
             Router = mainRouter;
-            Navigate(mainRouter.Content);
+            Navigate(Router.Content);
         }
 
         #region NavMethods

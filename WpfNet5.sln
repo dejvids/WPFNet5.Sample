@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfNet5.Core", "WpfNet5.Cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfNet5", "WpfNet5\WpfNet5.csproj", "{7912A70C-630D-4016-A639-7475B9C6B229}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfNet5.Admin", "WpfNet5.Admin\WpfNet5.Admin\WpfNet5.Admin.csproj", "{F5A346FF-1E73-434E-A87B-4C2EF4200DA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfNet5.Admin", "WpfNet5.Admin\WpfNet5.Admin\WpfNet5.Admin.csproj", "{F5A346FF-1E73-434E-A87B-4C2EF4200DA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

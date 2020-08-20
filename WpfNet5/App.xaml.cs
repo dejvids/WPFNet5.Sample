@@ -2,8 +2,10 @@
 using System;
 using System.IO;
 using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
 using WpfNet5.Core;
 using WpfNet5.Core.Extensions;
+using System.Net.Http;
 
 namespace WpfNet5
 {
@@ -15,11 +17,15 @@ namespace WpfNet5
         public App()
         {
             SetDefaultConfiguration();
-                
+
             ConfigureServices(services =>
-               services.AddModule<MainModule>()
-               .AddModule<Admin.AdminModule>()
-               .RegisterMainWindow<MainWindow>());
+            {
+                services.AddModule<MainModule>()
+                .AddModule<Admin.AdminModule>()
+                .RegisterMainWindow<MainWindow>();
+
+                services.AddHttpClient("apiClient");
+            });
 
             Start();
         }

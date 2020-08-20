@@ -18,10 +18,10 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Button Command="{Binding ShowFirstView}">Option1</Button>
-        <Button Command="{Binding ShowSecond}" Grid.Row="1">Option2</Button>
-        <Button Grid.Row="2" Command="{Binding ShowAdmin}">Option3</Button>
-        <Button Grid.Row="3" Command="{Binding ShowUsers}">Option4</Button>
+        <Button Command="{Binding ShowFirst}">First view</Button>
+        <Button Command="{Binding ShowSecond}" Grid.Row="1">Second view</Button>
+        <Button Grid.Row="2" Command="{Binding ShowAdmin}">Admin view</Button>
+        <Button Grid.Row="3" Command="{Binding ShowUsers}">Users view</Button>
     </Grid>
 
 </core:ContentPage>
