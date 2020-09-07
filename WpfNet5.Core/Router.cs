@@ -1,7 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
-using WpfNet5.Core.Services;
 
 namespace WpfNet5.Core
 {
@@ -11,15 +10,31 @@ namespace WpfNet5.Core
         public ViewModelBase CurrentViewModel { get; set; }
         public ViewModelBase HomeViewModel { get; set; }
 
+        Grid grid = new Grid();
+        private ProgressBar progressBar;
+
         public Router()
         {
+            progressBar = new ProgressBar()
+            {
+                IsIndeterminate = true,
+                Width = 100,
+                Height = 20
+            };
+
+            Panel.SetZIndex(progressBar, 100);
+
+
         }
 
         internal void Show<TViewModel>(ContentPage destinationPage, TViewModel viewmodel) where TViewModel : ViewModelBase
         {
             this.Dispatcher.BeginInvoke(new Action(() =>
             {
-                Content = destinationPage;
+
+                grid.Children.Clear();
+                grid.Children.Add(destinationPage);
+                grid.IsEnabled = true;
 
             }));
             OnNavigated(viewmodel);
@@ -27,7 +42,10 @@ namespace WpfNet5.Core
 
         internal void Show(ContentPage content, ViewModelBase viewModel)
         {
-            Content = content;
+            grid.Children.Clear();
+            Content = grid;
+            grid.Children.Add(content);
+            grid.IsEnabled = true;
             OnNavigated(viewModel);
         }
 
@@ -41,9 +59,21 @@ namespace WpfNet5.Core
             CurrentViewModel = viewModel;
         }
 
-        internal void OnCLose()
+        internal void OnClose(bool showProgressBar = false, bool clearContent = false)
         {
+            if (clearContent)
+            {
+                grid.Children.Clear();
+            }
+
+            grid.IsEnabled = false;
+            if (showProgressBar)
+            {
+                grid.Children.Add(progressBar);
+            }
+
             CurrentViewModel?.OnClose();
+
         }
     }
 }

@@ -1,14 +1,27 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using ReactiveUI;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace WpfNet5.Core.Services
 {
-    public class XNavigationService : IXNavigationService
+    public class XNavigationService : ReactiveObject, IXNavigationService
     {
         private readonly IServiceProvider m_serviceProvider;
         public Router Router { get; private set; }
+        private List<Task> m_naviagationTasks = new List<Task>();
+        private bool m_navigating;
+
+        public bool Navigating
+        {
+            get { return m_navigating; }
+            protected set { this.RaiseAndSetIfChanged(ref m_navigating, value); this.RaisePropertyChanged(nameof(CanNavigate)); }
+        }
+
+        public bool CanNavigate => !m_navigating;
 
         public XNavigationService(IServiceProvider serviceProvider)
         {
@@ -32,19 +45,30 @@ namespace WpfNet5.Core.Services
             var viewModel = m_serviceProvider.GetRequiredService<TViewModel>();
             var destinationPage = GetView(viewModel);
 
-            Router.OnCLose();
+            Task.WaitAll(m_naviagationTasks.ToArray());
+            m_naviagationTasks.Clear();
+            Router.OnClose();
             viewModel.OnNavigate(null);
             Router.Show(destinationPage, viewModel);
         }
 
-        public void Navigate<TViewModel>(object parameter) where TViewModel : ViewModelBase
+        public async Task NavigateAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase
         {
-            var viewModel = m_serviceProvider.GetRequiredService<TViewModel>();
-            var destinationPage = GetView(viewModel);
+            Navigating = true;
 
-            Router.CurrentViewModel?.OnClose();
-            viewModel.OnNavigate(parameter);
-            Router.Show(destinationPage, viewModel);
+            try
+            {
+                var viewModel = m_serviceProvider.GetRequiredService<TViewModel>();
+                var destinationPage = GetView(viewModel);
+
+                Router.OnClose(showProgressBar: true, clearContent: false);
+                await viewModel.OnNavigateAsync(parameter);
+                Router.Show(destinationPage, viewModel);
+            }
+            finally
+            {
+                Navigating = false;
+            }
         }
 
         public void Navigate<TViewModel, TParam>(TParam param) where TViewModel : ViewModelBase<TParam>
@@ -57,14 +81,52 @@ namespace WpfNet5.Core.Services
             Router.Show(destinationPage, viewModel);
         }
 
+        public async Task NavigateAsync<TViewModel, TParam>(TParam param) where TViewModel : ViewModelBase<TParam>
+        {
+            Navigating = true;
+            try
+            {
+                var viewModel = m_serviceProvider.GetRequiredService<TViewModel>();
+                var destinationPage = GetView(viewModel);
+
+                Router.OnClose(showProgressBar: true);
+                await viewModel.OnNavigateAsync(param);
+                Router.Show(destinationPage, viewModel);
+            }
+
+            finally
+            {
+                Navigating = false;
+            }
+        }
+
         public void Navigate<TViewModel, TParam1, TParam2>(TParam1 param1, TParam2 param2) where TViewModel : ViewModelBase<TParam1, TParam2>
         {
             var viewModel = m_serviceProvider.GetService<TViewModel>();
             var destinationPage = GetView(viewModel);
 
-            Router.OnCLose();
+            Router.OnClose();
             viewModel.OnNavigate(param1, param2);
             Router.Show(destinationPage, viewModel);
+        }
+
+        public async Task NavigateAsync<TViewModel, TParam1, TParam2>(TParam1 param1, TParam2 param2) where TViewModel : ViewModelBase<TParam1, TParam2>
+        {
+            Navigating = true;
+
+            try
+            {
+                var viewModel = m_serviceProvider.GetService<TViewModel>();
+                var destinationPage = GetView(viewModel);
+
+                Router.OnClose(true);
+                await viewModel.OnNavigateAsync(param1, param2);
+                Router.Show(destinationPage, viewModel);
+            }
+            finally
+            {
+                Navigating = false;
+            }
         }
 
         public void Navigate<TViewModel, TParam1, TParam2, TParam3>(TParam1 param1, TParam2 param2, TParam3 param3) where TViewModel : ViewModelBase<TParam1, TParam2, TParam3>
@@ -72,9 +134,28 @@ namespace WpfNet5.Core.Services
             var viewModel = m_serviceProvider.GetService<TViewModel>();
             var destinationPage = GetView(viewModel);
 
-            Router.OnCLose();
+            Router.OnClose();
             viewModel.OnNavigate(param1, param2, param3);
             Router.Show(destinationPage, viewModel);
+        }
+
+        public async Task NavigateAsync<TViewModel, TParam1, TParam2, TParam3>(TParam1 param1, TParam2 param2, TParam3 param3) where TViewModel : ViewModelBase<TParam1, TParam2, TParam3>
+        {
+            Navigating = true;
+
+            try
+            {
+                var viewModel = m_serviceProvider.GetService<TViewModel>();
+                var destinationPage = GetView(viewModel);
+
+                Router.OnClose(true);
+                await viewModel.OnNavigateAsync(param1, param2, param3);
+                Router.Show(destinationPage, viewModel);
+            }
+            finally
+            {
+                Navigating = false;
+            }
         }
 
         public void Navigate(object content)
@@ -96,10 +177,10 @@ namespace WpfNet5.Core.Services
                 }
             }
 
-            Router.OnCLose();
+            Router.OnClose();
             (viewModel as ViewModelBase)?.OnNavigate(null);
             Router.Show(contentPage, viewModel as ViewModelBase);
-        } 
+        }
         #endregion
 
         private static ContentPage<TViewModel> GetView<TViewModel>(TViewModel viewModel) where TViewModel : ViewModelBase
@@ -142,6 +223,11 @@ namespace WpfNet5.Core.Services
         public void GoBack()
         {
             //TODO: Implement
+        }
+
+        public void Navigate<TViewModel>(object parameter) where TViewModel : ViewModelBase
+        {
+            throw new NotImplementedException();
         }
     }
 }

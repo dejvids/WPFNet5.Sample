@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReactiveUI;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using WpfNet5.Core;
@@ -12,7 +13,7 @@ namespace WpfNet5.ViewModels
         public string Title
         {
             get => _title;
-            set { _title = value; RaisePropertyChanged(nameof(Title)); }
+            set { this.RaiseAndSetIfChanged(ref _title, value); }
         }
 
         public override void OnClose()
