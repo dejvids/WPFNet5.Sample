@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfNet5.Core", "WpfNet5.Cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfNet5", "WpfNet5\WpfNet5.csproj", "{7912A70C-630D-4016-A639-7475B9C6B229}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfNet5.Admin", "WpfNet5.Admin\WpfNet5.Admin\WpfNet5.Admin.csproj", "{F5A346FF-1E73-434E-A87B-4C2EF4200DA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfNet5.Admin", "WpfNet5.Admin\WpfNet5.Admin.csproj", "{E30FD2FC-59C6-4D11-9AAB-8AFD6DC99EC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{7912A70C-630D-4016-A639-7475B9C6B229}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7912A70C-630D-4016-A639-7475B9C6B229}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7912A70C-630D-4016-A639-7475B9C6B229}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F5A346FF-1E73-434E-A87B-4C2EF4200DA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F5A346FF-1E73-434E-A87B-4C2EF4200DA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F5A346FF-1E73-434E-A87B-4C2EF4200DA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F5A346FF-1E73-434E-A87B-4C2EF4200DA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E30FD2FC-59C6-4D11-9AAB-8AFD6DC99EC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E30FD2FC-59C6-4D11-9AAB-8AFD6DC99EC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E30FD2FC-59C6-4D11-9AAB-8AFD6DC99EC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E30FD2FC-59C6-4D11-9AAB-8AFD6DC99EC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
