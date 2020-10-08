@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReactiveUI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,8 +18,14 @@ namespace WpfNet5.Admin.ViewModels
         public override void OnNavigate(int param)
         {
             m_parameter = param;
-            Label = "Users";
-            RaisePropertyChanged(nameof(Label));
+            Label = $"Users - {m_parameter}";
+            this.RaisePropertyChanged(nameof(Label));
+        }
+
+        public override async Task OnNavigateAsync(int param)
+        {
+            await Task.Delay(1000);
+            OnNavigate(param);
         }
     }
 }

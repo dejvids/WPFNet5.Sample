@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfNet5.Core", "WpfNet5.Cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfNet5", "WpfNet5\WpfNet5.csproj", "{7912A70C-630D-4016-A639-7475B9C6B229}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfNet5.Admin", "WpfNet5.Admin\WpfNet5.Admin\WpfNet5.Admin.csproj", "{F5A346FF-1E73-434E-A87B-4C2EF4200DA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfNet5.User", "WpfNet5.User\WpfNet5.User.csproj", "{D6D8414E-8262-436F-BB88-526C7271D606}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfNet5.User", "WpfNet5.User\WpfNet5.User.csproj", "{D6D8414E-8262-436F-BB88-526C7271D606}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfNet5.Admin", "WpfNet5.Admin\WpfNet5.Admin.csproj", "{0D3EABA4-F2A8-4FBB-8140-C29DB989AC1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +25,14 @@ Global
 		{7912A70C-630D-4016-A639-7475B9C6B229}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7912A70C-630D-4016-A639-7475B9C6B229}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7912A70C-630D-4016-A639-7475B9C6B229}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F5A346FF-1E73-434E-A87B-4C2EF4200DA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F5A346FF-1E73-434E-A87B-4C2EF4200DA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F5A346FF-1E73-434E-A87B-4C2EF4200DA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F5A346FF-1E73-434E-A87B-4C2EF4200DA9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D6D8414E-8262-436F-BB88-526C7271D606}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D6D8414E-8262-436F-BB88-526C7271D606}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6D8414E-8262-436F-BB88-526C7271D606}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6D8414E-8262-436F-BB88-526C7271D606}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D3EABA4-F2A8-4FBB-8140-C29DB989AC1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D3EABA4-F2A8-4FBB-8140-C29DB989AC1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D3EABA4-F2A8-4FBB-8140-C29DB989AC1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D3EABA4-F2A8-4FBB-8140-C29DB989AC1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

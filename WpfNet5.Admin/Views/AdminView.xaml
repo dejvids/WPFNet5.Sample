@@ -11,7 +11,12 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Background="White">
 
-    <Grid>
-        <Button>Admin</Button>
+    <Grid Margin="0,4,0,-4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button FontSize="24" Command="{Binding MakeRequestCmd}">Admin</Button>
+        <TextBlock Grid.Row="1" Text="{Binding LicenceText, Mode=OneWay}"></TextBlock>
     </Grid>
 </core:ContentPage>

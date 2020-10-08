@@ -20,11 +20,13 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.6" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="3.1.6" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.6" />
-    <PackageReference Include="ReactiveUI.WPF" Version="11.4.17" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.6" />
+    <PackageReference Include="ReactiveUI" Version="11.5.17" />
+    <PackageReference Include="ReactiveUI.WPF" Version="11.5.17" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WpfNet5.Admin\WpfNet5.Admin\WpfNet5.Admin.csproj" />
+    <ProjectReference Include="..\WpfNet5.Admin\WpfNet5.Admin.csproj" />
     <ProjectReference Include="..\WpfNet5.Core\WpfNet5.Core.csproj" />
     <ProjectReference Include="..\WpfNet5.User\WpfNet5.User.csproj" />
   </ItemGroup>

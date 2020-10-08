@@ -13,6 +13,7 @@
 
     <Border BorderThickness="3" BorderBrush="Red">
         <Grid>
+            <!--<ProgressBar Height="20" Width="100" Panel.ZIndex="100" Visibility="Collapsed" IsIndeterminate="True"/>-->
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
