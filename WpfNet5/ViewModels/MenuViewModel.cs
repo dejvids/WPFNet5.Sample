@@ -5,6 +5,7 @@ using System.Reactive.Linq;
 using WpfNet5.Admin.ViewModels;
 using WpfNet5.Core;
 using WpfNet5.Core.Services;
+using WpfNet5.Common;
 
 namespace WpfNet5.ViewModels
 {
@@ -13,16 +14,26 @@ namespace WpfNet5.ViewModels
     {
         private readonly IXNavigationService m_navigationService;
         private readonly IObservable<bool> m_canNavigate;
+        private readonly IEventPublisher m_eventAggregator;
+
+        public bool DataLoaded { get; set; }
 
         public ReactiveCommand<Unit, Unit> ShowFirst { get; }
         public ReactiveCommand<Unit, Unit> ShowSecond { get; }
         public ReactiveCommand<Unit, Unit> ShowAdmin { get; }
         public ReactiveCommand<Unit, Unit> ShowUsers { get; }
 
-        public MenuViewModel(IXNavigationService navigationService)
+        public MenuViewModel(IXNavigationService navigationService, IEventPublisher eventAggregator)
         {
             m_navigationService = navigationService;
             m_canNavigate = this.WhenAnyValue(x => x.m_navigationService.CanNavigate, canNavigate => canNavigate == true);
+            m_eventAggregator = eventAggregator;
+
+            m_eventAggregator.GetEvent<LoadedData>().Subscribe(ev =>
+            {
+                DataLoaded = ev.Result;
+                this.RaisePropertyChanged(nameof(DataLoaded));
+            });
 
             ShowFirst = ReactiveCommand.Create(() => m_navigationService.Navigate<FirstViewModel>(), m_canNavigate);
             ShowSecond = ReactiveCommand.Create(() => m_navigationService.Navigate<SecondViewModel>(), m_canNavigate);

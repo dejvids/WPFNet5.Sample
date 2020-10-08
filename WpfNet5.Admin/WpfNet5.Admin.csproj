@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WpfNet5.Common\WpfNet5.Common.csproj" />
     <ProjectReference Include="..\WpfNet5.Core\WpfNet5.Core.csproj" />
   </ItemGroup>
 

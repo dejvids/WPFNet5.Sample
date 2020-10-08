@@ -3,6 +3,7 @@ using System;
 using System.Net.Http;
 using System.Reactive;
 using System.Threading.Tasks;
+using WpfNet5.Common;
 using WpfNet5.Core;
 
 namespace WpfNet5.Admin.ViewModels
@@ -11,6 +12,7 @@ namespace WpfNet5.Admin.ViewModels
     public class AdminViewModel : ViewModelBase
     {
         private readonly IHttpClientFactory m_http;
+        private readonly IEventPublisher m_eventAggregator;
 
         public object Param { get; private set; }
 
@@ -18,9 +20,10 @@ namespace WpfNet5.Admin.ViewModels
 
         public ReactiveCommand<Unit,string> MakeRequestCmd { get; private set; }
 
-        public AdminViewModel(IHttpClientFactory http)
+        public AdminViewModel(IHttpClientFactory http, IEventPublisher eventAggregator)
         {
             m_http = http;
+            m_eventAggregator = eventAggregator;
         }
 
         public override async Task OnNavigateAsync(object parameter)
@@ -28,6 +31,7 @@ namespace WpfNet5.Admin.ViewModels
             MakeRequestCmd = ReactiveCommand.CreateFromTask(MakeRequest);
             await Task.Delay(TimeSpan.FromSeconds(5));
             LicenceText = await MakeRequest();
+            m_eventAggregator.Publish<LoadedData>(new LoadedData(true));
             this.RaisePropertyChanged(nameof(LicenceText));
         }
 

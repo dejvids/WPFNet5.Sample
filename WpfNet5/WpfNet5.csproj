@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WpfNet5.Admin\WpfNet5.Admin.csproj" />
+    <ProjectReference Include="..\WpfNet5.Common\WpfNet5.Common.csproj" />
     <ProjectReference Include="..\WpfNet5.Core\WpfNet5.Core.csproj" />
     <ProjectReference Include="..\WpfNet5.User\WpfNet5.User.csproj" />
   </ItemGroup>

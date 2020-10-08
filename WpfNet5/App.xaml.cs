@@ -23,6 +23,7 @@ namespace WpfNet5
                 .AddModule<UserModule>();
 
                 services.AddHttpClient("apiClient");
+                services.AddSingleton<IEventPublisher, EventAggregator>();
             });
 
             Start();

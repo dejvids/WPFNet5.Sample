@@ -20,7 +20,17 @@
 
         <Button Command="{Binding ShowFirst}">First view</Button>
         <Button Command="{Binding ShowSecond}" Grid.Row="1">Second view</Button>
-        <Button Grid.Row="2" Command="{Binding ShowAdmin}">Admin view</Button>
+        <Button Grid.Row="2" Command="{Binding ShowAdmin}" Content="Admin view">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding DataLoaded}" Value="true">
+                            <Setter Property="Background" Value="#009900"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
         <Button Grid.Row="3" Command="{Binding ShowUsers}">Users view</Button>
     </Grid>
 
