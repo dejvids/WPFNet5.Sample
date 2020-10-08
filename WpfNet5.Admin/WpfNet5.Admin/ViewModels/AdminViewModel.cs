@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using WpfNet5.Core;
+﻿using WpfNet5.Core;
 
 namespace WpfNet5.Admin.ViewModels
 {
@@ -12,7 +9,7 @@ namespace WpfNet5.Admin.ViewModels
 
         private void DoSomething()
         {
-            
+
         }
 
         public override void OnNavigate(object parameter)

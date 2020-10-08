@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using WpfNet5.Core;
+using WpfNet5.User;
 using WpfNet5.Core.Extensions;
 
 namespace WpfNet5
@@ -19,6 +20,7 @@ namespace WpfNet5
             ConfigureServices(services =>
                services.AddModule<MainModule>()
                .AddModule<Admin.AdminModule>()
+               .AddModule<UserModule>()
                .RegisterMainWindow<MainWindow>());
 
             Start();
