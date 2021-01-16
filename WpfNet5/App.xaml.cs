@@ -12,18 +12,19 @@ namespace WpfNet5
     public partial class App : ApplicationBase
     {
         public App()
+            : base()
         {
             SetDefaultConfiguration();
 
             ConfigureServices(services =>
             {
-                services.AddModule<MainModule>()
+                services.RegisterMainWindow<MainWindow>()
+                .AddModule<MainModule>()
                 .AddModule<AdminModule>()
-                .RegisterMainWindow<MainWindow>()
-                .AddModule<UserModule>();
+                .AddModule<UserModule>()
+                .AddEventAggregator();
 
                 services.AddHttpClient("apiClient");
-                services.AddSingleton<IEventPublisher, EventAggregator>();
             });
 
             Start();

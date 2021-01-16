@@ -1,5 +1,5 @@
-﻿using System;
-namespace WpfNet5.Common
+﻿using WpfNet5.Core;
+namespace WpfNet5.Events.Common
 {
     public class LoadedData : EventBase
     {

@@ -1,51 +1,42 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace WpfNet5.Core
 {
     public class Router : UserControl
     {
+        private Grid m_grid = new Grid();
+        private ProgressBar m_progressBar;
+
         public ContentPage CurrentPage { get; set; }
         public ViewModelBase CurrentViewModel { get; set; }
         public ViewModelBase HomeViewModel { get; set; }
 
-        Grid grid = new Grid();
-        private ProgressBar progressBar;
-
         public Router()
         {
-            progressBar = new ProgressBar()
+            m_progressBar = new ProgressBar()
             {
                 IsIndeterminate = true,
                 Width = 100,
                 Height = 20
             };
 
-            Panel.SetZIndex(progressBar, 100);
-
-
+            Panel.SetZIndex(m_progressBar, 100);
         }
 
         internal void Show<TViewModel>(ContentPage destinationPage, TViewModel viewmodel) where TViewModel : ViewModelBase
         {
-            this.Dispatcher.BeginInvoke(new Action(() =>
-            {
-
-                grid.Children.Clear();
-                grid.Children.Add(destinationPage);
-                grid.IsEnabled = true;
-
-            }));
+            m_grid.Children.Clear();
+            m_grid.Children.Add(destinationPage);
+            m_grid.IsEnabled = true;
             OnNavigated(viewmodel);
         }
 
         internal void Show(ContentPage content, ViewModelBase viewModel)
         {
-            grid.Children.Clear();
-            Content = grid;
-            grid.Children.Add(content);
-            grid.IsEnabled = true;
+            m_grid.Children.Clear();
+            Content = m_grid;
+            m_grid.Children.Add(content);
+            m_grid.IsEnabled = true;
             OnNavigated(viewModel);
         }
 
@@ -63,17 +54,16 @@ namespace WpfNet5.Core
         {
             if (clearContent)
             {
-                grid.Children.Clear();
+                m_grid.Children.Clear();
             }
 
-            grid.IsEnabled = false;
+            m_grid.IsEnabled = false;
             if (showProgressBar)
             {
-                grid.Children.Add(progressBar);
+                m_grid.Children.Add(m_progressBar);
             }
 
             CurrentViewModel?.OnClose();
-
         }
     }
 }

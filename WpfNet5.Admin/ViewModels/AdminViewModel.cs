@@ -3,7 +3,7 @@ using System;
 using System.Net.Http;
 using System.Reactive;
 using System.Threading.Tasks;
-using WpfNet5.Common;
+using WpfNet5.Events.Common;
 using WpfNet5.Core;
 
 namespace WpfNet5.Admin.ViewModels
@@ -18,28 +18,30 @@ namespace WpfNet5.Admin.ViewModels
 
         public string LicenceText { get; private set; }
 
-        public ReactiveCommand<Unit,string> MakeRequestCmd { get; private set; }
+        public ReactiveCommand<Unit, Unit> MakeRequestCmd { get; private set; }
 
         public AdminViewModel(IHttpClientFactory http, IEventPublisher eventAggregator)
         {
             m_http = http;
             m_eventAggregator = eventAggregator;
+
+            MakeRequestCmd = ReactiveCommand.CreateFromTask(MakeRequest);
         }
 
         public override async Task OnNavigateAsync(object parameter)
         {
-            MakeRequestCmd = ReactiveCommand.CreateFromTask(MakeRequest);
             await Task.Delay(TimeSpan.FromSeconds(5));
-            LicenceText = await MakeRequest();
+            await MakeRequest();
+
             m_eventAggregator.Publish<LoadedData>(new LoadedData(true));
-            this.RaisePropertyChanged(nameof(LicenceText));
         }
 
-        private async Task<string> MakeRequest()
+        private async Task MakeRequest()
         {
             using var http = m_http.CreateClient();
             string licence = await http.GetStringAsync("https://raw.githubusercontent.com/kelseyhightower/nocode/master/LICENSE");
-            return licence;
+            LicenceText = licence;
+            this.RaisePropertyChanged(nameof(LicenceText));
         }
     }
 }

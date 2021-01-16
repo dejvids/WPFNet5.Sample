@@ -11,9 +11,12 @@ namespace WpfNet5.Core.Services
     public class XNavigationService : ReactiveObject, IXNavigationService
     {
         private readonly IServiceProvider m_serviceProvider;
+
         public Router Router { get; private set; }
         private List<Task> m_naviagationTasks = new List<Task>();
         private bool m_navigating;
+
+        private Stack<Type> m_navigationHistory = new Stack<Type>();
 
         public bool Navigating
         {
@@ -22,6 +25,8 @@ namespace WpfNet5.Core.Services
         }
 
         public bool CanNavigate => !m_navigating;
+
+        public bool CanGoBack => m_navigationHistory.Count > 1;
 
         public XNavigationService(IServiceProvider serviceProvider)
         {
@@ -36,23 +41,39 @@ namespace WpfNet5.Core.Services
         private void StartWithRouter(Router mainRouter)
         {
             Router = mainRouter;
-            Navigate(Router.Content);
+            Navigate(Router.Content, false);
         }
 
         #region NavMethods
-        public void Navigate<TViewModel>() where TViewModel : ViewModelBase
+        public void Navigate<TViewModel>(bool preventBackNavigation) where TViewModel : ViewModelBase
         {
             var viewModel = m_serviceProvider.GetRequiredService<TViewModel>();
             var destinationPage = GetView(viewModel);
 
             Task.WaitAll(m_naviagationTasks.ToArray());
             m_naviagationTasks.Clear();
+
             Router.OnClose();
             viewModel.OnNavigate(null);
-            Router.Show(destinationPage, viewModel);
+
+            ShowPage(destinationPage, viewModel, preventBackNavigation);
+
+            if (preventBackNavigation)
+                m_navigationHistory.Pop();
+
+            this.RaisePropertyChanged(nameof(CanGoBack));
+        }
+        public void Navigate<TViewModel>(object parameter, bool preventBackNavigation) where TViewModel : ViewModelBase
+        {
+            var viewModel = m_serviceProvider.GetRequiredService<TViewModel>();
+            var destinationPage = GetView(viewModel);
+
+            Router.CurrentViewModel.OnClose();
+            viewModel.OnNavigate(parameter);
+            ShowPage(destinationPage, viewModel, preventBackNavigation);
         }
 
-        public async Task NavigateAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase
+        public async Task NavigateAsync<TViewModel>(object parameter, bool preventBackNavigation) where TViewModel : ViewModelBase
         {
             Navigating = true;
 
@@ -63,7 +84,7 @@ namespace WpfNet5.Core.Services
 
                 Router.OnClose(showProgressBar: true, clearContent: false);
                 await viewModel.OnNavigateAsync(parameter);
-                Router.Show(destinationPage, viewModel);
+                ShowPage(destinationPage, viewModel, preventBackNavigation);
             }
             finally
             {
@@ -71,17 +92,17 @@ namespace WpfNet5.Core.Services
             }
         }
 
-        public void Navigate<TViewModel, TParam>(TParam param) where TViewModel : ViewModelBase<TParam>
+        public void Navigate<TViewModel, TParam>(TParam param, bool preventBackNavigation) where TViewModel : ViewModelBase<TParam>
         {
             var viewModel = m_serviceProvider.GetRequiredService<TViewModel>();
             var destinationPage = GetView(viewModel);
 
             Router.CurrentViewModel.OnClose();
             viewModel.OnNavigate(param);
-            Router.Show(destinationPage, viewModel);
+            ShowPage(destinationPage, viewModel, preventBackNavigation);
         }
 
-        public async Task NavigateAsync<TViewModel, TParam>(TParam param) where TViewModel : ViewModelBase<TParam>
+        public async Task NavigateAsync<TViewModel, TParam>(TParam param, bool preventBackNavigation) where TViewModel : ViewModelBase<TParam>
         {
             Navigating = true;
             try
@@ -91,7 +112,7 @@ namespace WpfNet5.Core.Services
 
                 Router.OnClose(showProgressBar: true);
                 await viewModel.OnNavigateAsync(param);
-                Router.Show(destinationPage, viewModel);
+                ShowPage(destinationPage, viewModel, preventBackNavigation);
             }
 
             finally
@@ -100,17 +121,17 @@ namespace WpfNet5.Core.Services
             }
         }
 
-        public void Navigate<TViewModel, TParam1, TParam2>(TParam1 param1, TParam2 param2) where TViewModel : ViewModelBase<TParam1, TParam2>
+        public void Navigate<TViewModel, TParam1, TParam2>(TParam1 param1, TParam2 param2, bool preventBackNavigation) where TViewModel : ViewModelBase<TParam1, TParam2>
         {
             var viewModel = m_serviceProvider.GetService<TViewModel>();
             var destinationPage = GetView(viewModel);
 
             Router.OnClose();
             viewModel.OnNavigate(param1, param2);
-            Router.Show(destinationPage, viewModel);
+            ShowPage(destinationPage, viewModel, preventBackNavigation);
         }
 
-        public async Task NavigateAsync<TViewModel, TParam1, TParam2>(TParam1 param1, TParam2 param2) where TViewModel : ViewModelBase<TParam1, TParam2>
+        public async Task NavigateAsync<TViewModel, TParam1, TParam2>(TParam1 param1, TParam2 param2, bool preventBackNavigation) where TViewModel : ViewModelBase<TParam1, TParam2>
         {
             Navigating = true;
 
@@ -121,7 +142,7 @@ namespace WpfNet5.Core.Services
 
                 Router.OnClose(true);
                 await viewModel.OnNavigateAsync(param1, param2);
-                Router.Show(destinationPage, viewModel);
+                ShowPage(destinationPage, viewModel, preventBackNavigation);
             }
             finally
             {
@@ -129,17 +150,17 @@ namespace WpfNet5.Core.Services
             }
         }
 
-        public void Navigate<TViewModel, TParam1, TParam2, TParam3>(TParam1 param1, TParam2 param2, TParam3 param3) where TViewModel : ViewModelBase<TParam1, TParam2, TParam3>
+        public void Navigate<TViewModel, TParam1, TParam2, TParam3>(TParam1 param1, TParam2 param2, TParam3 param3, bool preventBackNavigation) where TViewModel : ViewModelBase<TParam1, TParam2, TParam3>
         {
             var viewModel = m_serviceProvider.GetService<TViewModel>();
             var destinationPage = GetView(viewModel);
 
             Router.OnClose();
             viewModel.OnNavigate(param1, param2, param3);
-            Router.Show(destinationPage, viewModel);
+            ShowPage(destinationPage, viewModel, preventBackNavigation);
         }
 
-        public async Task NavigateAsync<TViewModel, TParam1, TParam2, TParam3>(TParam1 param1, TParam2 param2, TParam3 param3) where TViewModel : ViewModelBase<TParam1, TParam2, TParam3>
+        public async Task NavigateAsync<TViewModel, TParam1, TParam2, TParam3>(TParam1 param1, TParam2 param2, TParam3 param3, bool preventBackNavigation) where TViewModel : ViewModelBase<TParam1, TParam2, TParam3>
         {
             Navigating = true;
 
@@ -150,7 +171,7 @@ namespace WpfNet5.Core.Services
 
                 Router.OnClose(true);
                 await viewModel.OnNavigateAsync(param1, param2, param3);
-                Router.Show(destinationPage, viewModel);
+                ShowPage(destinationPage, viewModel, preventBackNavigation);
             }
             finally
             {
@@ -158,7 +179,7 @@ namespace WpfNet5.Core.Services
             }
         }
 
-        public void Navigate(object content)
+        public void Navigate(object content, bool preventBackNavigation)
         {
             object viewModel = null;
             var contentPage = content as ContentPage;
@@ -180,6 +201,12 @@ namespace WpfNet5.Core.Services
             Router.OnClose();
             (viewModel as ViewModelBase)?.OnNavigate(null);
             Router.Show(contentPage, viewModel as ViewModelBase);
+
+            if (!preventBackNavigation)
+            {
+                m_navigationHistory.Push(viewModel.GetType());
+                this.RaisePropertyChanged(nameof(CanGoBack));
+            }
         }
         #endregion
 
@@ -203,31 +230,34 @@ namespace WpfNet5.Core.Services
             return destinationPage;
         }
 
-        //private void Navigate(Type viewModelType)
-        //{ //var navigationService = CurrentPage.NavigationService;
-        //    var router = GetRouter();
-        //    router.OnCLose();
-        //    var basePageType = typeof(ContentPage);
-        //    basePageType.MakeGenericType(viewModelType);
-        //    var assembly = Assembly.GetAssembly(viewModelType);
+        private void ShowPage<TViewModel>(ContentPage page, TViewModel viewModel, bool preventBackNavigation) where TViewModel : ViewModelBase
+        {
+            Router.Show(page, viewModel);
 
-        //    var destinationPageType = assembly.GetTypes().FirstOrDefault(t => t.IsSubclassOf(basePageType));
-
-        //    var viewModel = m_serviceProvider.GetRequiredService(viewModelType) as ViewModelBase;
-        //    //viewModel.OnNavigate(null);
-        //    var destinationPage = Activator.CreateInstance(destinationPageType, viewModel) as ContentPage;
-
-        //    router.Show(destinationPage, viewModel);
-        //}
+            if (!preventBackNavigation)
+            {
+                m_navigationHistory.Push(viewModel.GetType());
+                this.RaisePropertyChanged(nameof(CanGoBack));
+            }
+        }
+        public void NavigateBack<TViewModel>() where TViewModel : ViewModelBase
+        {
+            Navigate<TViewModel>(preventBackNavigation: true);
+        }
 
         public void GoBack()
         {
-            //TODO: Implement
-        }
+            if (!CanGoBack)
+                throw new InvalidOperationException("Can not navigate back, navigation history is empty.");
 
-        public void Navigate<TViewModel>(object parameter) where TViewModel : ViewModelBase
-        {
-            throw new NotImplementedException();
+            m_navigationHistory.Pop();
+
+            var vm = m_navigationHistory.Peek();
+
+            var method = this.GetType().GetMethod(nameof(NavigateBack));
+
+            method = method.MakeGenericMethod(vm);
+            method.Invoke(this, null);
         }
     }
 }
