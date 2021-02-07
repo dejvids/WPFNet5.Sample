@@ -2,6 +2,7 @@
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace WpfNet5.Core.Services
 
         private Stack<Type> m_navigationHistory = new Stack<Type>();
 
+        public ReadOnlyCollection<Type> NavigationHistory => new ReadOnlyCollection<Type>(m_navigationHistory.ToList());
         public bool Navigating
         {
             get { return m_navigating; }
@@ -57,9 +59,6 @@ namespace WpfNet5.Core.Services
             viewModel.OnNavigate(null);
 
             ShowPage(destinationPage, viewModel, preventBackNavigation);
-
-            if (preventBackNavigation)
-                m_navigationHistory.Pop();
 
             this.RaisePropertyChanged(nameof(CanGoBack));
         }
@@ -199,7 +198,7 @@ namespace WpfNet5.Core.Services
             }
 
             Router.OnClose();
-            (viewModel as ViewModelBase)?.OnNavigate(null);
+            (viewModel as ViewModelBase)?.OnNavigate(new { FirstRun = true });
             Router.Show(contentPage, viewModel as ViewModelBase);
 
             if (!preventBackNavigation)

@@ -3,7 +3,7 @@ using System;
 using System.Net.Http;
 using System.Reactive;
 using System.Threading.Tasks;
-using WpfNet5.Events.Common;
+using WpfNet5.Common.Events;
 using WpfNet5.Core;
 
 namespace WpfNet5.Admin.ViewModels
@@ -12,7 +12,7 @@ namespace WpfNet5.Admin.ViewModels
     public class AdminViewModel : ViewModelBase
     {
         private readonly IHttpClientFactory m_http;
-        private readonly IEventPublisher m_eventAggregator;
+        private readonly IEventAggregator m_eventAggregator;
 
         public object Param { get; private set; }
 
@@ -20,7 +20,7 @@ namespace WpfNet5.Admin.ViewModels
 
         public ReactiveCommand<Unit, Unit> MakeRequestCmd { get; private set; }
 
-        public AdminViewModel(IHttpClientFactory http, IEventPublisher eventAggregator)
+        public AdminViewModel(IHttpClientFactory http, IEventAggregator eventAggregator)
         {
             m_http = http;
             m_eventAggregator = eventAggregator;

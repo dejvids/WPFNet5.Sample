@@ -12,7 +12,7 @@ namespace WpfNet5.Core.Extensions
 
         public static IServiceCollection AddEventAggregator(this IServiceCollection services)
         {
-            services.AddSingleton<IEventPublisher, EventAggregator>();
+            services.AddSingleton<IEventAggregator, EventAggregator>();
             return services;
         }
     }

@@ -1,5 +1,5 @@
 ﻿using WpfNet5.Core;
-namespace WpfNet5.Events.Common
+namespace WpfNet5.Common.Events
 {
     public class LoadedData : EventBase
     {

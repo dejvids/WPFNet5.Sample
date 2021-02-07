@@ -9,15 +9,24 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-       
-        <views:Menu x:Name="menu"></views:Menu>
 
-        <core:Router x:Name="mainRouter" Grid.Column="1">
+        <views:BreadCrumbsView x:Name="breadCrumbs" Background="#434839" Grid.ColumnSpan="2"/>
+
+        <views:Menu x:Name="menu" Grid.Row="1"></views:Menu>
+
+        <core:Router x:Name="mainRouter" Grid.Column="1" Grid.Row="1">
             <views:HomeView Grid.Column="1"/>
         </core:Router>
+
+        <TextBlock Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" TextAlignment="Center" Text="WpfNet5" Background="#434839" Foreground="White"/>
     </Grid>
 </core:WindowBase>

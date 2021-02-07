@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace WpfNet5.Core.Services
 {
@@ -7,6 +9,7 @@ namespace WpfNet5.Core.Services
         Router Router { get; }
         bool CanNavigate { get; }
         bool CanGoBack { get;  }
+        ReadOnlyCollection<Type> NavigationHistory { get; }
         void Navigate<TViewModel>(bool preventBackNavigation = false)
             where TViewModel : ViewModelBase;
 

@@ -8,9 +8,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-            Background="White">
+            Background="#ECECEB">
 
-    <Border BorderThickness="3" BorderBrush="Red">
+    <Border BorderThickness="3" BorderBrush="#6C7A91">
         <Grid>
             <!--<ProgressBar Height="20" Width="100" Panel.ZIndex="100" Visibility="Collapsed" IsIndeterminate="True"/>-->
             <Grid.RowDefinitions>

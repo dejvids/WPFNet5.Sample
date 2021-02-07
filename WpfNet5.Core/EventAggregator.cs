@@ -5,7 +5,7 @@ using System.Reactive.Subjects;
 
 namespace WpfNet5.Core
 {
-    public class EventAggregator : IEventPublisher
+    public class EventAggregator : IEventAggregator
     {
         private ISubject<object> _subject = new Subject<object>();
 
