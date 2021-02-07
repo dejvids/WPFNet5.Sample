@@ -4,7 +4,7 @@
 		<UseWPF>true</UseWPF>
 	</PropertyGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\WpfNet5.Core\WpfNet5.Core.csproj" />
+	  <PackageReference Include="WpfNet5.Core" Version="1.0.0" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Update="Views\UsersView.xaml.cs">

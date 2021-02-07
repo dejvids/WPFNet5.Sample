@@ -28,12 +28,12 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
+    <PackageReference Include="WpfNet5.Core" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\WpfNet5.Admin\WpfNet5.Admin.csproj" />
     <ProjectReference Include="..\WpfNet5.Common\WpfNet5.Common.csproj" />
-    <ProjectReference Include="..\WpfNet5.Core\WpfNet5.Core.csproj" />
     <ProjectReference Include="..\WpfNet5.User\WpfNet5.User.csproj" />
   </ItemGroup>
 

@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfNet5.Core", "WpfNet5.Core\WpfNet5.Core.csproj", "{D6E340B5-F7C5-4F7C-A6F2-A81B9B1CD3E8}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfNet5", "WpfNet5\WpfNet5.csproj", "{7912A70C-630D-4016-A639-7475B9C6B229}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfNet5.Sample", "WpfNet5\WpfNet5.Sample.csproj", "{7912A70C-630D-4016-A639-7475B9C6B229}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfNet5.User", "WpfNet5.User\WpfNet5.User.csproj", "{D6D8414E-8262-436F-BB88-526C7271D606}"
 EndProject
@@ -13,18 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfNet5.Admin", "WpfNet5.Ad
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfNet5.Common", "WpfNet5.Common\WpfNet5.Common.csproj", "{4B752034-06F3-477D-9258-528FABE1E8CE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfTest1", "..\WpfTest1\WpfTest1\WpfTest1.csproj", "{4052B2DB-0F6C-40D3-B205-CCCD0BCDBF98}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D6E340B5-F7C5-4F7C-A6F2-A81B9B1CD3E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D6E340B5-F7C5-4F7C-A6F2-A81B9B1CD3E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D6E340B5-F7C5-4F7C-A6F2-A81B9B1CD3E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D6E340B5-F7C5-4F7C-A6F2-A81B9B1CD3E8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7912A70C-630D-4016-A639-7475B9C6B229}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7912A70C-630D-4016-A639-7475B9C6B229}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7912A70C-630D-4016-A639-7475B9C6B229}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -41,10 +33,6 @@ Global
 		{4B752034-06F3-477D-9258-528FABE1E8CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B752034-06F3-477D-9258-528FABE1E8CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B752034-06F3-477D-9258-528FABE1E8CE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4052B2DB-0F6C-40D3-B205-CCCD0BCDBF98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4052B2DB-0F6C-40D3-B205-CCCD0BCDBF98}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4052B2DB-0F6C-40D3-B205-CCCD0BCDBF98}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4052B2DB-0F6C-40D3-B205-CCCD0BCDBF98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
