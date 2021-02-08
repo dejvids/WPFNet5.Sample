@@ -28,7 +28,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
-    <PackageReference Include="WpfNet5.Core" Version="1.0.0" />
+    <PackageReference Include="WpfNet5.Core" Version="0.1.0-preview" />
   </ItemGroup>
 
   <ItemGroup>
