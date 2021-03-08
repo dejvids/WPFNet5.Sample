@@ -2,11 +2,11 @@
 using System;
 using System.Reactive;
 using System.Reactive.Linq;
-using System.Threading.Tasks;
 using WpfNet5.Admin.ViewModels;
 using WpfNet5.Common.Events;
 using WpfNet5.Core;
 using WpfNet5.Core.Services;
+using WpfNet5.User.ViewModels;
 
 namespace WpfNet5.ViewModels
 {
@@ -25,6 +25,7 @@ namespace WpfNet5.ViewModels
         public ReactiveCommand<Unit, Unit> ShowAdmin { get; }
         public ReactiveCommand<Unit, Unit> ShowUsers { get; }
         public ReactiveCommand<Unit, Unit> GoBack { get; }
+        public ReactiveCommand<Unit, Unit> ShowWebView { get; }
 
         public MenuViewModel(IXNavigationService navigationService, IEventAggregator eventAggregator)
         {
@@ -53,7 +54,7 @@ namespace WpfNet5.ViewModels
                 m_eventAggregator.Publish<ChangedPage>(new ChangedPage { BreadCrumbs = "Second" });
             }, m_canNavigate);
 
-            ShowAdmin = ReactiveCommand.CreateFromTask(async() =>
+            ShowAdmin = ReactiveCommand.CreateFromTask(async () =>
             {
                 await m_navigationService.NavigateAsync<AdminViewModel>(new { Message = "Hello" });
                 m_eventAggregator.Publish<ChangedPage>(new ChangedPage { BreadCrumbs = "Admin" });
@@ -71,6 +72,13 @@ namespace WpfNet5.ViewModels
                 m_navigationService.GoBack();
                 m_eventAggregator.Publish<ChangedPage>(new ChangedPage { BreadCrumbs = "BACK" });
             }, m_canGoBack);
+
+            ShowWebView = ReactiveCommand.Create( () =>
+            {
+                m_navigationService.Navigate<WebViewModel,string>("http://microsoft.com");
+                m_eventAggregator.Publish(new ChangedPage { BreadCrumbs = "WebView" });
+            }, m_canNavigate);
+
         }
     }
 }

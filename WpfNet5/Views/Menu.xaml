@@ -27,6 +27,7 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -47,7 +48,8 @@
             </Button.Style>
         </Button>
         <Button Style="{StaticResource menuBtn}"  Grid.Row="3" Command="{Binding ShowUsers}">Users view</Button>
-        <Button Style="{StaticResource menuBtn}"  Grid.Row="4" Command="{Binding GoBack}">Go back</Button>
+        <Button Style="{StaticResource menuBtn}"  Grid.Row="4" Command="{Binding ShowWebView}">Web View</Button>
+        <Button Style="{StaticResource menuBtn}"  Grid.Row="5" Command="{Binding GoBack}">Go back</Button>
     </Grid>
 
 </core:ContentPage>
