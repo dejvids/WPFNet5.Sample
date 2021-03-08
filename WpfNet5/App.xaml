@@ -1,6 +1,0 @@
-﻿<core:ApplicationBase x:Class="WpfNet5.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:core="clr-namespace:WpfNet5.Core;assembly=WpfNet5.Core"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:WpfNet5">
-</core:ApplicationBase>
