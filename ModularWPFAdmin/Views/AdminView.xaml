@@ -4,7 +4,7 @@
       xmlns:vm="clr-namespace:ModularWPF.Admin.ViewModels"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:core="clr-namespace:WpfNet5.Core;assembly=WpfNet5.Core"
+      xmlns:core="clr-namespace:ModularWPF.Core;assembly=ModularWPF.Core"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ModularWPF.Admin.Views"
       mc:Ignorable="d" 

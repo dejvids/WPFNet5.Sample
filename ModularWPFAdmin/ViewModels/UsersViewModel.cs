@@ -1,10 +1,6 @@
-﻿using ReactiveUI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using ModularWPF.Core;
+using ReactiveUI;
 using System.Threading.Tasks;
-using WpfNet5.Core;
 
 namespace ModularWPF.Admin.ViewModels
 {

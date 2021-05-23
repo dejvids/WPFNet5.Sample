@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="WpfNet5.Core" Version="0.1.0-preview" />
+    <PackageReference Include="ModularWpf.Core" Version="0.1.2-preview" />
   </ItemGroup>
 
 </Project>

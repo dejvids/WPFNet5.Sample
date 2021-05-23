@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using WpfNet5.Core;
 using ModularWPF.User;
-using WpfNet5.Core.Extensions;
 using ModularWPF.Admin;
+using ModularWPF.Core;
+using ModularWPF.Core.Extensions;
 
 namespace ModularWPF
 {

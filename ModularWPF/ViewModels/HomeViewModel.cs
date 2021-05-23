@@ -1,6 +1,6 @@
 ﻿using ReactiveUI;
 using ModularWPF.Common.Events;
-using WpfNet5.Core;
+using ModularWPF.Core;
 
 namespace ModularWPF.ViewModels
 {
