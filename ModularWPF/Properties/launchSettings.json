@@ -1,7 +1,11 @@
 {
   "profiles": {
     "ModularWPF": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNET_CORE_ENVIRONMENT": "Development"
+      }
     }
   }
 }

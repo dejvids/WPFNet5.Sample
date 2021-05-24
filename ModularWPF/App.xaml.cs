@@ -14,7 +14,6 @@ namespace ModularWPF
         public App()
             : base()
         {
-            SetDefaultConfiguration();
 
             ConfigureServices(services =>
             {
@@ -27,6 +26,7 @@ namespace ModularWPF
                 services.AddHttpClient("apiClient");
             });
 
+            SetDefaultConfiguration();
             Start();
         }
     }
