@@ -1,9 +1,8 @@
 ﻿using ReactiveUI;
 using System;
 using ModularWPF.Common.Events;
-using WpfNet5.Core;
 using System.Collections.Generic;
-using System.Linq;
+using ModularWPF.Core;
 
 namespace ModularWPF.ViewModels
 {

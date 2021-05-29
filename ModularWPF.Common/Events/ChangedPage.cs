@@ -1,4 +1,4 @@
-﻿using WpfNet5.Core;
+﻿using ModularWPF.Core;
 
 namespace ModularWPF.Common.Events
 {

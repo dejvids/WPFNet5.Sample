@@ -1,5 +1,5 @@
-﻿using WpfNet5.Core;
-using ModularWPF.ViewModels;
+﻿using ModularWPF.ViewModels;
+using ModularWPF.Core;
 
 namespace ModularWPF
 {

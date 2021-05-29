@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Reactive;
 using System.Threading.Tasks;
 using ModularWPF.Common.Events;
-using WpfNet5.Core;
+using ModularWPF.Core;
 
 namespace ModularWPF.Admin.ViewModels
 {

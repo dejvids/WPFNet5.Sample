@@ -1,12 +1,12 @@
-﻿<core:ContentPage x:Class="ModularWPF.Admin.Views.UsersView"
-                  x:TypeArguments="vm:UsersViewModel"
+﻿<core:ContentPage x:Class="ModularWPF.User.Views.UserDetailsView"
+                  x:TypeArguments="vm:UserDetailsViewModel"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:vm="clr-namespace:ModularWPF.Admin.ViewModels"
+             xmlns:vm="clr-namespace:ModularWPF.User.ViewModels"
              xmlns:core="clr-namespace:ModularWPF.Core;assembly=ModularWPF.Core"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ModularWPF.Admin.Views"
+             xmlns:local="clr-namespace:ModularWPF.User.Views"
              mc:Ignorable="d"  Background="White"
              d:DesignHeight="450" d:DesignWidth="800">
     <Border BorderThickness="3" BorderBrush="Blue">

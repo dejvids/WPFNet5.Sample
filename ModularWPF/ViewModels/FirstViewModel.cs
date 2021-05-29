@@ -1,5 +1,5 @@
-﻿using ReactiveUI;
-using WpfNet5.Core;
+﻿using ModularWPF.Core;
+using ReactiveUI;
 
 namespace ModularWPF.ViewModels
 {

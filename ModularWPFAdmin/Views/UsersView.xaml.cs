@@ -1,5 +1,5 @@
 ﻿using ModularWPF.Admin.ViewModels;
-using WpfNet5.Core;
+using ModularWPF.Core;
 
 namespace ModularWPF.Admin.Views
 {

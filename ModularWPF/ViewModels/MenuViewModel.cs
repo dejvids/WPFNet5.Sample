@@ -4,9 +4,9 @@ using System.Reactive;
 using System.Reactive.Linq;
 using ModularWPF.Admin.ViewModels;
 using ModularWPF.Common.Events;
-using WpfNet5.Core;
-using WpfNet5.Core.Services;
 using ModularWPF.User.ViewModels;
+using ModularWPF.Core;
+using ModularWPF.Core.Services;
 
 namespace ModularWPF.ViewModels
 {
